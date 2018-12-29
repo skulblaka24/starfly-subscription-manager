@@ -1,0 +1,10 @@
+---
+# defaults file for subscription-manager
+
+rh_username: USERNAME
+rh_password: PASSWORD
+rh_poolid: POOL
+
+
+
+

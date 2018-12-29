@@ -1,0 +1,20 @@
+---
+# tasks file for subscription-manager
+
+- name: Enregistrement de la machine
+  command: subscription-manager register --username "{{ rh_username }}" --password "{{ rh_password }}" --force
+  when: ansible_distribution == 'Redhat'
+
+- name: Inscription au pool
+  command: subscription-manager attach --pool="{{ rh_poolid }}"
+  when: ansible_distribution == 'Redhat'
+
+- name: Desactivation de tous les repos
+  command: subscription-manager repos --disable=*
+  when: ansible_distribution == 'Redhat'
+
+- name: Activation des repos qui nous interressent
+  command: subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms"
+  when: ansible_distribution == 'Redhat'
+
+...
